@@ -1,12 +1,21 @@
 {
-  "name": "@shelf/xxxxxx",
-  "version": "0.0.0",
-  "description": "xxxxxx",
+  "name": "@shelf/jest-gremlin",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Run your tests using Jest & Apache Tinkerpop Docker container",
+  "keywords": [
+    "jest",
+    "jest environment",
+    "jest preset",
+    "postgres",
+    "postgres local"
+  ],
+  "repository": "shelfio/jest-gremlin",
   "license": "MIT",
   "author": {
-    "name": "Vlad Holubiev",
-    "email": "vlad@shelf.io",
-    "url": "https://shelf.io"
+    "name": "Dmytro Harazdovskyi",
+    "email": "dmytro.harazdovskyi@shelf.io",
+    "url": "shelf.io"
   },
   "sideEffects": false,
   "type": "module",
@@ -14,16 +23,16 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "files": [
-    "lib"
+    "jest-preset.js",
+    "lib/"
   ],
   "scripts": {
-    "build": "rm -rf lib/ && tsc",
-    "coverage": "yarn test --coverage",
-    "lint": "yarn lint:ci --fix",
+    "build": "rm -rf lib/ && yarn build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts'",
+    "build:types": "tsc --emitDeclarationOnly --declaration --isolatedModules false --declarationDir lib",
+    "lint": "eslint . --ext .js,.ts,.json --fix",
     "lint:ci": "eslint . --ext .js,.ts,.json",
-    "lint:size": "size-limit",
     "prepack": "yarn build",
-    "test": "TZ=UTC jest src",
+    "test": "jest",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch"
   },
@@ -31,22 +40,35 @@
     "*.{html,md,yml}": [
       "prettier --write"
     ],
-    "*.{js,ts,json}": [
+    "*.{ts,js,json}": [
       "eslint --fix"
     ],
     ".circleci/config.yml": [
       ".husky/validate-circleci-config.sh"
     ]
   },
+  "babel": {
+    "extends": "@shelf/babel-config/backend"
+  },
   "prettier": "@shelf/prettier-config",
-  "dependencies": {},
+  "jest": {
+    "preset": "./jest-preset.js"
+  },
+  "dependencies": {
+    "gremlin": "3.7.0"
+  },
   "devDependencies": {
+    "@babel/cli": "7.23.9",
+    "@babel/core": "7.23.9",
+    "@shelf/babel-config": "3.0.0",
     "@shelf/eslint-config": "3.15.1",
     "@shelf/prettier-config": "1.0.0",
     "@shelf/tsconfig": "0.1.0",
     "@size-limit/preset-small-lib": "11.1.5",
     "@swc/core": "1.4.17",
     "@swc/jest": "0.2.36",
+    "cwd": "0.10.0",
+    "@types/cwd": "0.10.2",
     "@types/jest": "29.5.13",
     "@types/node": "18.18.8",
     "eslint": "8.57.1",
