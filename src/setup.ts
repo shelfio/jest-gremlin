@@ -1,9 +1,9 @@
-import { getConfig } from './config';
-import { execSync } from 'child_process';
+import {execSync} from 'child_process';
 import gremlin from 'gremlin';
+import {getConfig} from './config';
 
-const DriverRemoteConnection = gremlin.driver.DriverRemoteConnection;
-const Graph = gremlin.structure.Graph;
+const {DriverRemoteConnection} = gremlin.driver;
+const {Graph} = gremlin.structure;
 
 module.exports = async function startGremlin() {
   const config = getConfig();
@@ -11,13 +11,16 @@ module.exports = async function startGremlin() {
   const graph = new Graph();
   const g = graph.traversal().withRemote(drc);
 
-  execSync(`docker run -d -p ${config.port}:${config.imagePort} ${config.imageName}`, { stdio: 'inherit' });
+  execSync(`docker run -d -p ${config.port}:${config.imagePort} ${config.imageName}`, {
+    stdio: 'inherit',
+  });
 
   console.log('Waiting for TinkerPop server to be ready...');
 
   const isServerReady = async () => {
     try {
       await g.V().limit(1).toList();
+
       return true;
     } catch (e) {
       return false;
@@ -35,5 +38,6 @@ module.exports = async function startGremlin() {
       await new Promise(resolve => setTimeout(resolve, 1000));
     }
   }
+
   return true;
 };

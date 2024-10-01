@@ -1,9 +1,10 @@
+import {execSync} from 'child_process';
 import {getConfig} from './config';
-import {execSync} from "child_process";
 
 module.exports = function stopGremlin() {
   const config = getConfig();
-  execSync(`
+  execSync(
+    `
     CONTAINER_IDS=$(docker ps -q --filter "ancestor=${config.imageName}")
 
     if [ -n "$CONTAINER_IDS" ] ; then
@@ -19,5 +20,7 @@ module.exports = function stopGremlin() {
     else
       echo "No containers found with ancestor image '${config.imageName}'."
     fi
-  `, {stdio: 'inherit'});
+  `,
+    {stdio: 'inherit'}
+  );
 };
