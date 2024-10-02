@@ -11,7 +11,11 @@ module.exports = async function startGremlin() {
   const graph = new Graph();
   const g = graph.traversal().withRemote(drc);
 
-  execSync(`docker run -d -p ${config.port}:${config.imagePort} ${config.imageName}`, {
+  execSync(`docker run -d -p ${config.port}:${config.imagePort} --name ${config.containerName} ${config.imageName}`, {
+    stdio: 'inherit',
+  });
+
+  execSync(`docker ps`, {
     stdio: 'inherit',
   });
 

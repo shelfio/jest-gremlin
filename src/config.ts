@@ -8,6 +8,7 @@ type Config = {
   protocol: string;
   imageName: string;
   imagePort?: number;
+  containerName?: string;
 };
 
 export function getConfig(): Config {
@@ -16,6 +17,7 @@ export function getConfig(): Config {
     protocol: 'ws',
     imageName: 'tinkerpop/gremlin-server',
     imagePort: 8182,
+    containerName: 'gremlin-server',
   };
 
   try {
@@ -24,6 +26,9 @@ export function getConfig(): Config {
     const importedConfig = require(path);
     console.log(`Found config ${path}`, importedConfig);
     config = importedConfig as Config;
+    if (!config.imageName) {
+      config.imageName = 'gremlin-server';
+    }
   } catch (e) {
     console.warn(`Did not found ${process.env.JEST_GREMLIN_CONFIG}, using default settings`, e);
     console.log('Starting with default paras', config);
