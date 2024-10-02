@@ -1,6 +1,6 @@
 {
   "name": "@shelf/jest-gremlin",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": false,
   "description": "Run your tests using Jest & Apache Tinkerpop Docker container",
   "keywords": [
@@ -17,11 +17,6 @@
     "email": "dmytro.harazdovskyi@shelf.io",
     "url": "shelf.io"
   },
-  "sideEffects": false,
-  "type": "module",
-  "exports": "./lib/index.js",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
   "files": [
     "jest-preset.js",
     "lib/"
@@ -70,7 +65,7 @@
     "@types/cwd": "0.10.2",
     "@types/gremlin": "^3.6.7",
     "@types/jest": "29.5.13",
-    "@types/node": "18.18.8",
+    "@types/node": "20.16.10",
     "cwd": "0.10.0",
     "eslint": "8.57.1",
     "husky": "9.0.11",
@@ -82,7 +77,7 @@
     "typescript": "5.6.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"
