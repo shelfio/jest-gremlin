@@ -1,6 +1,6 @@
 {
   "name": "@shelf/jest-gremlin",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "description": "Run your tests using Jest & Apache Tinkerpop Docker container",
   "keywords": [
