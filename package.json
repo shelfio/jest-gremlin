@@ -1,6 +1,6 @@
 {
   "name": "@shelf/jest-gremlin",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": false,
   "description": "Run your tests using Jest & Apache Tinkerpop Docker container",
   "keywords": [
@@ -50,6 +50,7 @@
     "preset": "./jest-preset.js"
   },
   "dependencies": {
+    "debug": "4.3.7",
     "gremlin": "3.7.0"
   },
   "devDependencies": {
@@ -63,6 +64,7 @@
     "@swc/core": "1.4.17",
     "@swc/jest": "0.2.36",
     "@types/cwd": "0.10.2",
+    "@types/debug": "^4.1.12",
     "@types/gremlin": "^3.6.7",
     "@types/jest": "29.5.13",
     "@types/node": "20.16.10",
