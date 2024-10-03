@@ -1,5 +1,8 @@
 import {resolve} from 'path';
 import cwd from 'cwd';
+import getDebug from 'debug';
+
+const debug = getDebug('jest-gremlin');
 
 const DEFAULT_CONFIG_FILE_NAME = 'jest-gremlin-config.cjs';
 
@@ -9,6 +12,8 @@ type Config = {
   imageName: string;
   imagePort?: number;
   containerName?: string;
+  maxTries?: number;
+  triesInterval?: number;
 };
 
 export function getConfig(): Config {
@@ -18,20 +23,20 @@ export function getConfig(): Config {
     imageName: 'tinkerpop/gremlin-server',
     imagePort: 8182,
     containerName: 'gremlin-server',
+    maxTries: 10,
+    triesInterval: 1000,
   };
 
   try {
     const path = process.env.JEST_GREMLIN_CONFIG || resolve(cwd(), DEFAULT_CONFIG_FILE_NAME);
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const importedConfig = require(path);
-    console.log(`Found config ${path}`, importedConfig);
-    config = importedConfig as Config;
-    if (!config.imageName) {
-      config.imageName = 'gremlin-server';
-    }
+    debug.log(`Found config ${path}`, importedConfig);
+
+    config = {config, ...importedConfig};
   } catch (e) {
-    console.warn(`Did not found ${process.env.JEST_GREMLIN_CONFIG}, using default settings`, e);
-    console.log('Starting with default paras', config);
+    debug.log(`Did not found ${process.env.JEST_GREMLIN_CONFIG}, using default settings`, e);
+    debug.log('Starting with default params', config);
   }
 
   return config;
