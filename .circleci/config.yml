@@ -27,4 +27,3 @@ jobs:
       - run: yarn build
       - run: yarn lint:ci
       - run: yarn test
-      - run: yarn coverage --maxWorkers=4
