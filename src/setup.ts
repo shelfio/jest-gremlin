@@ -7,6 +7,7 @@ const debug = getDebug('jest-gremlin');
 const {DriverRemoteConnection} = gremlin.driver;
 const {Graph} = gremlin.structure;
 
+// eslint-disable-next-line complexity
 module.exports = async function startGremlin() {
   const config = getConfig();
   const drc = new DriverRemoteConnection(`${config.protocol}://localhost:${config.port}/gremlin`);
