@@ -30,7 +30,7 @@ export function getConfig(): Config {
     const importedConfig = require(path);
     console.log(`Found config ${path}`, importedConfig);
 
-    config = {config, ...importedConfig};
+    config = {...config, ...importedConfig};
   } catch (e) {
     console.log(`Did not found ${process.env.JEST_GREMLIN_CONFIG}, using default settings`, e);
   }
