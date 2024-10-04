@@ -31,11 +31,11 @@ import cwd from 'cwd';
 module.exports = {
   port: 8182,
   protocol: 'ws',
-  imageName: 'tinkerpop/gremlin-server',
-  imagePort: 8182,
-  containerName: 'gremlin-server',
-  maxTries: 10,
-  triesInterval: 1000,
+  imageName: 'tinkerpop/gremlin-server', // or your custom prebuilt image
+  imagePort: 8182, // port on which gremlin server is running inside the container
+  containerName: 'gremlin-server', // or your custom container name that would be spin up
+  maxTries: 10, // how many times to try to connect to gremlin server ()
+  triesInterval: 1000, // interval between tries
 };
 ```
 
