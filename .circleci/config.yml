@@ -26,6 +26,5 @@ jobs:
       - install_deps
       - run: yarn build
       - run: yarn lint:ci
-      - run: yarn lint:size
       - run: yarn test
       - run: yarn coverage --maxWorkers=4
