@@ -1,8 +1,5 @@
 import {resolve} from 'path';
 import cwd from 'cwd';
-import getDebug from 'debug';
-
-const debug = getDebug('jest-gremlin');
 
 const DEFAULT_CONFIG_FILE_NAME = 'jest-gremlin-config.cjs';
 
@@ -31,12 +28,11 @@ export function getConfig(): Config {
     const path = process.env.JEST_GREMLIN_CONFIG || resolve(cwd(), DEFAULT_CONFIG_FILE_NAME);
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const importedConfig = require(path);
-    debug.log(`Found config ${path}`, importedConfig);
+    console.log(`Found config ${path}`, importedConfig);
 
     config = {config, ...importedConfig};
   } catch (e) {
-    debug.log(`Did not found ${process.env.JEST_GREMLIN_CONFIG}, using default settings`, e);
-    debug.log('Starting with default params', config);
+    console.log(`Did not found ${process.env.JEST_GREMLIN_CONFIG}, using default settings`, e);
   }
 
   return config;

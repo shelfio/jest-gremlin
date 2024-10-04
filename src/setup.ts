@@ -1,9 +1,7 @@
 import {execSync} from 'child_process';
 import gremlin from 'gremlin';
-import getDebug from 'debug';
 import {getConfig} from './config';
 
-const debug = getDebug('jest-gremlin');
 const {DriverRemoteConnection} = gremlin.driver;
 const {Graph} = gremlin.structure;
 
@@ -25,7 +23,7 @@ module.exports = async function startGremlin() {
     stdio: 'inherit',
   });
 
-  debug.log('Waiting for TinkerPop server to be ready...');
+  console.log('Waiting for TinkerPop server to be ready...');
 
   const isServerReady = async () => {
     try {
@@ -49,7 +47,6 @@ module.exports = async function startGremlin() {
 
     ready = await isServerReady();
     tries++;
-    debug.log(`Attempt ${tries}: Server is${ready ? '' : ' not'} ready.`);
     if (!ready) {
       await new Promise(resolve => setTimeout(resolve, config?.triesInterval || 1000));
     }
