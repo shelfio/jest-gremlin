@@ -50,6 +50,7 @@
     "preset": "./jest-preset.js"
   },
   "dependencies": {
+    "debug": "4.3.7",
     "gremlin": "3.7.0"
   },
   "devDependencies": {
@@ -61,7 +62,7 @@
     "@shelf/tsconfig": "0.1.0",
     "@size-limit/preset-small-lib": "11.1.5",
     "@types/cwd": "0.10.2",
-    "@types/debug": "^4.1.12",
+    "@types/debug": "4.1.12",
     "@types/dockerode": "^3.3.31",
     "@types/gremlin": "^3.6.7",
     "@types/jest": "29.5.13",
