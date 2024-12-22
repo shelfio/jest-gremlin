@@ -4,8 +4,8 @@
 
 ## Usage
 
-### 1. Have Docker installed!
-Visit [Docker](https://docs.docker.com/get-docker/) to install Docker.
+### 1. Have installed docker-compatible container engine!
+This plugin tested with [Docker](https://docs.docker.com/get-docker/) and [Podman](https://podman.io/), but it can work with any container engine that supports Docker CLI commands.
 
 ### 2. Install
 
@@ -36,6 +36,7 @@ module.exports = {
   containerName: 'gremlin-server', // or your custom container name that would be spin up
   maxTries: 10, // how many times to try to connect to gremlin server ()
   triesInterval: 1000, // interval between tries
+  containerEngine: 'docker', // or 'podman' if you use podman - used in cli commands to start/stop container
 };
 ```
 

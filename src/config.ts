@@ -6,6 +6,7 @@ const DEFAULT_CONFIG_FILE_NAME = 'jest-gremlin-config.cjs';
 type Config = {
   port: number;
   protocol: string;
+  containerEngine: 'podman' | 'docker';
   imageName: string;
   imagePort?: number;
   containerName?: string;
@@ -22,6 +23,7 @@ export function getConfig(): Config {
     containerName: 'gremlin-server',
     maxTries: 10,
     triesInterval: 1000,
+    containerEngine: 'docker',
   };
 
   try {
