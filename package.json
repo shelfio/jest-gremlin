@@ -31,17 +31,6 @@
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch"
   },
-  "lint-staged": {
-    "*.{html,md,yml}": [
-      "prettier --write"
-    ],
-    "*.{ts,js,json}": [
-      "eslint --fix"
-    ],
-    ".circleci/config.yml": [
-      ".husky/validate-circleci-config.sh"
-    ]
-  },
   "babel": {
     "extends": "@shelf/babel-config/backend"
   },
