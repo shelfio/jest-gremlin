@@ -1,9 +1,12 @@
 import {execSync} from 'child_process';
+import {createRequire} from 'module';
 import gremlin from 'gremlin';
-import {getConfig} from './config';
+import type {getConfig as getConfigType} from './config';
 
 const {AnonymousTraversalSource} = gremlin.process;
 const {DriverRemoteConnection} = gremlin.driver;
+const requireFromHere = createRequire(__filename);
+const {getConfig} = requireFromHere('./config.cjs') as {getConfig: typeof getConfigType};
 
 // eslint-disable-next-line complexity
 module.exports = async function startGremlin() {

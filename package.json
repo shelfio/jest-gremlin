@@ -1,6 +1,7 @@
 {
   "name": "@shelf/jest-gremlin",
   "version": "2.0.0",
+  "type": "module",
   "private": false,
   "description": "Run your tests using Jest & Apache Tinkerpop Docker container",
   "keywords": [
@@ -17,12 +18,28 @@
     "email": "dmytro.harazdovskyi@shelf.io",
     "url": "shelf.io"
   },
+  "main": "./lib/index.cjs",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.cjs",
+      "require": "./lib/index.cjs",
+      "default": "./lib/index.cjs"
+    },
+    "./jest-preset": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.cjs",
+      "require": "./lib/index.cjs",
+      "default": "./lib/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
-    "jest-preset.js",
+    "jest-preset.cjs",
     "lib/"
   ],
   "scripts": {
-    "build": "rm -rf lib/ && yarn build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts'",
+    "build": "rm -rf lib/ && yarn build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts' --out-file-extension '.cjs'",
     "build:types": "tsc --emitDeclarationOnly --declaration --isolatedModules false --declarationDir lib",
     "lint": "eslint . --ext .js,.ts,.json --fix",
     "lint:ci": "eslint . --ext .js,.ts,.json",
@@ -36,7 +53,7 @@
   },
   "prettier": "@shelf/prettier-config",
   "jest": {
-    "preset": "./jest-preset.js"
+    "preset": "./jest-preset.cjs"
   },
   "dependencies": {
     "debug": "4.4.3",
