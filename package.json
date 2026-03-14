@@ -2,6 +2,7 @@
   "name": "@shelf/jest-gremlin",
   "version": "2.0.0",
   "type": "module",
+  "packageManager": "pnpm@10.32.0",
   "private": false,
   "description": "Run your tests using Jest & Apache Tinkerpop Docker container",
   "keywords": [
@@ -39,14 +40,14 @@
     "lib/"
   ],
   "scripts": {
-    "build": "rm -rf lib/ && yarn build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts' --out-file-extension '.cjs'",
+    "build": "rm -rf lib/ && pnpm run build:types && babel src --out-dir lib --ignore '**/*.test.ts' --extensions '.ts' --out-file-extension '.cjs'",
     "build:types": "tsc --emitDeclarationOnly --declaration --isolatedModules false --declarationDir lib",
     "lint": "eslint . --ext .js,.ts,.json --fix",
     "lint:ci": "eslint . --ext .js,.ts,.json",
-    "prepack": "yarn build",
+    "prepack": "pnpm build",
     "test": "jest",
     "type-check": "tsc --noEmit",
-    "type-check:watch": "npm run type-check -- --watch"
+    "type-check:watch": "pnpm run type-check -- --watch"
   },
   "babel": {
     "extends": "@shelf/babel-config/backend"
