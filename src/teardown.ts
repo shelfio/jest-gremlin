@@ -1,5 +1,9 @@
 import {execSync} from 'child_process';
-import {getConfig} from './config';
+import {createRequire} from 'module';
+import type {getConfig as getConfigType} from './config';
+
+const requireFromHere = createRequire(__filename);
+const {getConfig} = requireFromHere('./config.cjs') as {getConfig: typeof getConfigType};
 
 module.exports = function stopGremlin() {
   const config = getConfig();

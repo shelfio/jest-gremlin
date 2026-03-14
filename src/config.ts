@@ -1,7 +1,7 @@
 import {resolve} from 'path';
 import cwd from 'cwd';
 
-const DEFAULT_CONFIG_FILE_NAME = 'jest-gremlin-config.cjs';
+const DEFAULT_CONFIG_NAME = 'jest-gremlin-config.cjs';
 
 type Config = {
   port: number;
@@ -27,8 +27,8 @@ export function getConfig(): Config {
   };
 
   try {
-    const path = process.env.JEST_GREMLIN_CONFIG || resolve(cwd(), DEFAULT_CONFIG_FILE_NAME);
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const path = process.env.JEST_GREMLIN_CONFIG || resolve(cwd(), DEFAULT_CONFIG_NAME);
+
     const importedConfig = require(path);
     console.log(`Found config ${path}`, importedConfig);
 

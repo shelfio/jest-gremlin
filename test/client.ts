@@ -29,15 +29,16 @@ export async function getClient(params: {
 
   log('Connecting to Neptune:', neptuneConfig);
 
+  const {AnonymousTraversalSource} = gremlin.process;
   const {DriverRemoteConnection} = gremlin.driver;
-  const {Graph} = gremlin.structure;
 
   const dc = new DriverRemoteConnection(
     `${neptuneConfig.protocol}://${neptuneConfig.host}:${neptuneConfig.port}/gremlin`,
-    {}
+    {
+      enableUserAgentOnConnect: false,
+    }
   );
-  const graph = new Graph();
-  const g = graph.traversal().withRemote(dc);
+  const g = AnonymousTraversalSource.traversal().withRemote(dc);
 
   return {
     g,

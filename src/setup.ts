@@ -1,16 +1,18 @@
 import {execSync} from 'child_process';
+import {createRequire} from 'module';
 import gremlin from 'gremlin';
-import {getConfig} from './config';
+import type {getConfig as getConfigType} from './config';
 
+const {AnonymousTraversalSource} = gremlin.process;
 const {DriverRemoteConnection} = gremlin.driver;
-const {Graph} = gremlin.structure;
+const requireFromHere = createRequire(__filename);
+const {getConfig} = requireFromHere('./config.cjs') as {getConfig: typeof getConfigType};
 
 // eslint-disable-next-line complexity
 module.exports = async function startGremlin() {
   const config = getConfig();
   const drc = new DriverRemoteConnection(`${config.protocol}://localhost:${config.port}/gremlin`);
-  const graph = new Graph();
-  const g = graph.traversal().withRemote(drc);
+  const g = AnonymousTraversalSource.traversal().withRemote(drc);
 
   execSync(
     `${config.containerEngine} run -d -p ${config.port}:${config.imagePort} --name ${config.containerName} ${config.imageName}`,
@@ -31,7 +33,7 @@ module.exports = async function startGremlin() {
       await g.V().limit(1).toList();
 
       return true;
-    } catch (e) {
+    } catch {
       return false;
     }
   };

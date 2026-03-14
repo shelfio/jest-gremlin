@@ -3,6 +3,7 @@
 coverage/
 lib/
 node_modules/
+.idea/
 
 *.log
 junit.xml
@@ -10,7 +11,8 @@ draft.js
 *.draft.js
 draft.ts
 *.draft.ts
-yarn.lock
+.pnpm-store/
+pnpm-lock.yaml
 
 .env
 .DS_Store
