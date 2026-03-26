@@ -1,8 +1,8 @@
-const baseConfig = require('@shelf/eslint-config/typescript').default;
+const baseConfig = require('@shelf/eslint-config/typescript-no-prettier.js').default;
 
 module.exports = [
   {
-    ignores: ['coverage/**', 'lib/**', 'renovate.json', 'tsconfig.json'],
+    ignores: ['coverage/**', 'lib/**', 'renovate.json', 'tsconfig.json', '.pnpm-store/'],
   },
   ...baseConfig,
   {

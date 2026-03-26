@@ -1,10 +1,11 @@
-# jest-gremlin [![CircleCI](https://circleci.com/gh/shelfio/jest-gremlin/tree/master.svg?style=svg)](https://circleci.com/gh/shelfio/jest-gremlin/tree/master) ![](https://img.shields.io/badge/code_style-prettier-ff69b4.svg) [![npm (scoped)](https://img.shields.io/npm/v/@shelf/jest-gremlin.svg)](https://www.npmjs.com/package/@shelf/jest-gremlin)
+# jest-gremlin [![CircleCI](https://circleci.com/gh/shelfio/jest-gremlin/tree/master.svg?style=svg)](https://circleci.com/gh/shelfio/jest-gremlin/tree/master) [![npm (scoped)](https://img.shields.io/npm/v/@shelf/jest-gremlin.svg)](https://www.npmjs.com/package/@shelf/jest-gremlin)
 
 > Jest preset to run Gremlin server before tests
 
 ## Usage
 
 ### 1. Have installed docker-compatible container engine!
+
 This plugin tested with [Docker](https://docs.docker.com/get-docker/) and [Podman](https://podman.io/), but it can work with any container engine that supports Docker CLI commands.
 
 ### 2. Install
